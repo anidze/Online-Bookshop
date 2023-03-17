@@ -1,0 +1,36 @@
+.img1 {
+  height: 350px;
+  width: fit-content;
+  transform: translate(14%, 40%);
+}
+
+.viewMoreBtn {
+  position: absolute;
+  text-decoration: none;
+  text-align: center;
+  transform: translate(100%, 670%);
+}
+form {
+  width: 50%;
+}
+.ProductNumber{
+  color: red;
+}
+#newProductDiv{
+display: none;
+}
+#editProductDiv{
+  display: none;
+}
+#filterDiv{
+  display: none;
+}
+
+label.validation-error{
+  color:   red;
+  margin-left: 5px;
+}
+
+.hide{
+  display:none;
+}
