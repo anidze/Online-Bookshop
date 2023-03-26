@@ -25,12 +25,3 @@ display: none;
 #filterDiv{
   display: none;
 }
-
-label.validation-error{
-  color:   red;
-  margin-left: 5px;
-}
-
-.hide{
-  display:none;
-}

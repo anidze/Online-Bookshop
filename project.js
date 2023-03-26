@@ -28,88 +28,102 @@ function showFilterDiv(){
 }
 
 ////reset fields
-var selectedRow = null
-
-function onFormSubmit() {
-    if (validate()) {
-        var formData = readFormData();
-        if (selectedRow == null)
-            insertNewRecord(formData);
-        else
-            updateRecord(formData);
-        resetForm();
-    }
-}
-
-function readFormData() {
-    var formData = {};
-    formData["Name"] = document.getElementById("Name").value;
-    formData["ProductNumber"] = document.getElementById("ProductNumber").value;
-    formData["StandartCost"] = document.getElementById("StandartCost").value;
-    formData["ListPrice"] = document.getElementById("ListPrice").value;
-    formData["SellStartDate"] = document.getElementById("SellStartDate").value;
-    return formData;
-}
-
-function insertNewRecord(data) {
-    var table = document.getElementById("bookList1").getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.length);
-    cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.Name;
-    cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.ProductNumber;
-    cell3 = newRow.insertCell(2);
-    cell3.innerHTML = data.StandartCost;
-    cell4 = newRow.insertCell(3);
-    cell4.innerHTML = data.ListPrice;
-    cell5 = newRow.insertCell(4);
-    cell5.innerHTML = data.SellStartDate;
-    cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<a onClick="onEdit(this)">Edit</a>
-                       <a onClick="onDelete(this)">Delete</a>`;
-}
-
 function resetForm() {
-    document.getElementById("Name").value = "";
-    document.getElementById("ProductNumber").value = "";
-    document.getElementById("StandartCost").value = "";
-    document.getElementById("ListPrice").value = "";
-    document.getElementById("SellStartDate").value = "";
-    selectedRow = null;
+  document.getElementById("Name").value = "";
+  document.getElementById("ProductNumber").value = "";
+  document.getElementById("Color").value = "";
+  document.getElementById("StandartCost").value = "";
+  document.getElementById("ListPrice").value = "";
+  document.getElementById("Size").value = "";
+  document.getElementById("Weight").value = "";
+  document.getElementById("SellStartDate").value = "";
+  selectedRow = "";
 }
+// bootsrap form validation
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  "use strict";
 
-function onEdit(td) {
-    selectedRow = td.parentElement.parentElement;
-    document.getElementById("Name").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("ProductNumber").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("StandartCost").value = selectedRow.cells[2].innerHTML;
-    document.getElementById("ListPrice").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("SellStartDate").value = selectedRow.cells[3].innerHTML;
-}
-function updateRecord(formData) {
-    selectedRow.cells[0].innerHTML = formData.Name;
-    selectedRow.cells[1].innerHTML = formData.ProductNumber;
-    selectedRow.cells[2].innerHTML = formData.StandartCost;
-    selectedRow.cells[3].innerHTML = formData.ListPrice;
-    selectedRow.cells[3].innerHTML = formData.SellStartDate;
-}
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
 
-function onDelete(td) {
-    if (confirm('Are you sure to delete this record ?')) {
-        row = td.parentElement.parentElement;
-        document.getElementById("bookList1").deleteRow(row.rowIndex);
-        resetForm();
+  // Loop over them and prevent submission
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
+
+// add data fields
+var selectedRow = null;
+document.querySelector("#booksForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  //forms value
+  const name = document.querySelector("#Name").value;
+  const ProductNumber = document.querySelector("#ProductNumber").value;
+  const Color = document.querySelector("#Color").value;
+  const SellStartDate = document.querySelector("#SellStartDate").value;
+  const ListPrice = document.querySelector("#ListPrice").value;
+    if (
+      selectedRow == null
+      ) {
+      const list = document.querySelector("#bookList2");
+      const row = document.createElement("tr");
+      row.innerHTML = `
+            <td>${name}</td>
+            <td>${ProductNumber}</td>
+            <td>${Color}</td>
+            <td>${ListPrice}</td>
+            <td>${SellStartDate}</td>
+            <td>
+            <a href="#" class="btn btn-secondary m-2 edit"onClick="myFunction()">Edit</a>
+            <a href="#" class="btn btn-danger delete" >Delete</a>
+            </td>
+            `;
+
+      list.appendChild(row);
+      selectedRow = null;
     }
-}
-function validate() {
-    isValid = true;
-    if (document.getElementById("Name").value == "") {
-        isValid = false;
-        document.getElementById("fullNameValidationError").classList.remove("hide");
-    } else {
-        isValid = true;
-        if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
-            document.getElementById("fullNameValidationError").classList.add("hide");
-    }
-    return isValid;
-}
+  
+});
+// edit data
+// console.log(document.querySelector("#bookList2));
+document.querySelector("#bookList2").addEventListener("click", (e)=>{
+  target=e.target;
+  if(target.classList.contains("edit")){
+    selectedRow=target.parentElement.parentElement;
+
+    document.getElementById("Name2").value = selectedRow.children[0].textContent;
+    document.getElementById("ProductNumber2").value = selectedRow.children[1].textContent;
+    document.getElementById("Color2").value =  selectedRow.children[2].textContent;
+    document.getElementById("ListPrice2").value =  selectedRow.children[3].textContent;
+    document.getElementById("SellStartDate2").value =  selectedRow.children[4].textContent;
+
+  }
+  let editPost = (e) => {
+    input.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove();
+  };
+})
+
+
+// delete field
+document.querySelector("#bookList2").addEventListener("click", (e) => {
+  target = e.target;
+  if (target.classList.contains("delete")) {
+    target.parentElement.parentElement.remove();
+  }
+});
+// delete fields
+
+

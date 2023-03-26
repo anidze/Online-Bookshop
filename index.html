@@ -58,7 +58,7 @@
       <!-- filterdiv -->
       <div class="col-8 my-5" id="filterDiv">
         <div class="row ">
-          <div class=" col-3 row ">
+          <div class=" col-2 row ">
             <label for="ProductNumber" class="col-sm-2 col-form-label"
               >name:</label
             >
@@ -67,7 +67,7 @@
                 type="text"
                 class="form-control mx-3"
                 id="ProductNumber"
-                required
+                
               />
             </div>
           </div>
@@ -102,7 +102,7 @@
     
         </div>
       </div>
-      <!-- end of filterdiv -->
+      <!-- filterdiv -->
       <table
         class="table caption-top table-striped table-hover border table-bordered"
         id="bookList1"
@@ -285,7 +285,7 @@
       </button>
     </div>
     <!-- div new product -->
-    <div class="container-fluid" id="newProductDiv" onsubmit="onFormSubmit()">
+    <div class="container-fluid" id="newProductDiv">
       <h1 class="h1">New Product</h1>
       <form
         action=""
@@ -295,16 +295,9 @@
         autocomplete="off"
       >
         <div class="mb-3 row">
-          <label for="name" class="col-sm-2 col-form-label"
-            >Name:</label
-          >
-          <!-- <label class=" hide" id="fullNameValidationError" This field is required>Name :</label> -->
-          <!-- <label class="validation-error hide" id="fullNameValidationError">This field is required.</label> -->
+          <label for="Name" class="col-sm-2 col-form-label">Name :</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="Name" required />
-          </div>
-          <div class="validation-error">
-            <span style="color: red" class="hide">The Name Field is required</span>
           </div>
         </div>
 
@@ -370,7 +363,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end">
-          <button type="button" class="btn btn-success mx-1">Save</button>
+          <button type="submit" class="btn btn-success mx-1">Save</button>
           <button
             type="button"
             class="btn btn-secondary mx-1"
@@ -388,18 +381,20 @@
         </div>
       </form>
     </div>
+<!-- end new product div -->
+
+
+
     <!-- div edit product -->
     <div class="container-fluid" id="editProductDiv">
       <h1>Edit Products</h1>
-      <form class="p-2 needs-validation" novalidate id="editForm" onsubmit="onFormSubmit()">
+      <form class="p-2 needs-validation" novalidate id="editForm">
         <div class="mb-3 row">
           <label for="Name" class="col-sm-2 col-form-label">Name :</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="Name" required />
+            <input type="text" class="form-control" id="Name2" required />
           </div>
-          <div class="invalid-feedback">
-            <span style="color: red">The Name Field is required</span>
-          </div>
+       
         </div>
 
         <div class="mb-3 row">
@@ -410,18 +405,16 @@
             <input
               type="text"
               class="form-control"
-              id="ProductNumber"
+              id="ProductNumber2"
               required
             />
           </div>
-          <div class="invalid-feedback">
-            <span style="color: red">The Product Number Field is required</span>
-          </div>
+         
         </div>
         <div class="mb-3 row">
           <label for="Color" class="col-sm-2 col-form-label">Color:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="Color" />
+            <input type="text" class="form-control" id="Color2" />
           </div>
         </div>
 
@@ -430,7 +423,7 @@
             >Standart Cost:</label
           >
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="StandartCost" />
+            <input type="text" class="form-control" id="StandartCost2" />
           </div>
         </div>
 
@@ -439,13 +432,9 @@
             >List Price:</label
           >
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="ListPrice" required />
+            <input type="text" class="form-control" id="ListPrice2" required />
           </div>
-          <div class="invalid-feedback">
-            <span style="color: red"
-              >The Field List Price must be netween 0.1 and 10000</span
-            >
-          </div>
+         
         </div>
 
         <div class="mb-3 row">
@@ -467,13 +456,13 @@
             >Sell Start Date:</label
           >
           <div class="col-sm-10">
-            <input type="date" class="form-control" id="SellStartDate" />
+            <input type="date" class="form-control" id="SellStartDate2" />
           </div>
         </div>
 
         <div class="col-12 d-flex justify-content-end">
           <button
-            type="button"
+            type="submit"
             class="btn btn-success mx-1"
             onClick="gotoPageBack()"
           >
@@ -482,7 +471,7 @@
           <button
             type="button"
             class="btn btn-secondary mx-1"
-            onClick="gotoPageBack()"
+            onClick="gotoPageBack()" onclick=""
           >
             Back to List
           </button>
